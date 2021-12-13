@@ -1,0 +1,31 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>To do app</title>
+  </head>
+  <body>
+    <div class="task-filter">
+      <span class="filter" data-filter="all">ALL</span>
+      <span class="filter" data-filter="nor">Normal</span>
+      <span class="filter" data-filter="int">Intermediate</span>
+      <span class="filter" data-filter="urg">Urgent</span>
+    </div>
+    <div class="task-container"></div>
+    <div class="input-container">
+      <input type="text" id="task-info" placeholder="Input your work" />
+      <label for="date-input">Deadline:</label>
+      <input type="date" id="date-input" min="2021-11-28" />
+      <label for="task-level">Level task:</label>
+      <select id="task-level" value="Normal">
+        <option value="Normal">Normal</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Urgent">Urgent</option>
+      </select>
+      <button id="submit" data-filter="all">Submit</button>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
