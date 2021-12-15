@@ -1,7 +1,8 @@
 const getEl = (element) => {
   return document.querySelector(element);
 };
-let taskArr = [];
+const rawData = localStorage.getItem("taskArr") || null;
+let taskArr = rawData ? JSON.parse(rawData) : [];
 
 function submitData(e) {
   e.preventDefault();
@@ -35,6 +36,7 @@ function submitData(e) {
   }
   let singleTask = { taskInfo, dateInput, taskLevel };
   isValidated === true ? (taskArr = [...taskArr, { ...singleTask }]) : null;
+  localStorage.setItem("taskArr", JSON.stringify(taskArr));
 }
 
 function printData() {
@@ -63,8 +65,10 @@ function printData() {
       <div class="task-delete" onclick='getEl(".delete-confirm").classList.add("visible")'></div>
       <div class="delete-confirm">
       <h2>Bạn có muốn xóa task ${task.taskInfo} không?</h2>
-      <button id="confirmYes" onclick='deleteData' >Yes</button>
-      <button id="confirmNo" onclick= getEl(".delete-confirm").classList.remove("visible")>No</button>
+      <button id="confirmYes" onclick='this.parentElement.parentElement.remove();
+      
+      '>Yes</button>
+      <button id="confirmNo" onclick='getEl(".delete-confirm").classList.remove("visible")'>No</button>
       </div>
       <p>Deadline: <span class="date-input">${task.dateInput}</span></p>
       <p>Level task: <button class="task-level">${task.taskLevel}</button></p>
@@ -72,11 +76,6 @@ function printData() {
   }
   getEl(".task-container").innerHTML = listTask;
 }
-
-function deleteData() {
-  taskArr.splice[this,1];
-}
-
 
 getEl("#submit").addEventListener("click", submitData);
 getEl("#submit").addEventListener("click", printData);
